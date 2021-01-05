@@ -52,7 +52,12 @@ public class Dentaku extends JFrame {
 		keyPanel.add(new CalcButton("＋"), 14);
 		keyPanel.add(new CalcButton("＝"), 15);
 		
-		contentPane.add(new ClearButton(), BorderLayout.SOUTH);//Cボタンを配置
+		JPanel keySouthPanel = new JPanel();
+		keySouthPanel.setLayout(new GridLayout(1, 2));
+		contentPane.add(keySouthPanel, BorderLayout.SOUTH);
+		keySouthPanel.add(new ClearButton(), 0);
+		keySouthPanel.add(new ReversalButton(), 1);
+		
 		this.setVisible(true);//windowが表示される
 	}
 	
@@ -127,6 +132,26 @@ public class Dentaku extends JFrame {
 				afterCalc = false;
 				isStacked = false;
 				result.setText("");
+			}
+		}
+		
+		//反転ボタンの定義
+		public class ReversalButton extends JButton implements ActionListener {
+			private  static final long serialVersionUID = 1L;
+			
+			public ReversalButton() {
+				super("+/-");
+				this.addActionListener(this);
+			}
+			
+			public void actionPerformed(ActionEvent evt) {
+				String textString = result.getText();
+				if(textString.startsWith("-")) {
+					textString.replace("-", "");
+				}else {
+					StringBuilder sb = new StringBuilder(textString);
+					sb.insert(0, "-");
+				}
 			}
 		}
 	}

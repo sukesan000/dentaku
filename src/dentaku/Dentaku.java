@@ -146,12 +146,20 @@ public class Dentaku extends JFrame {
 			
 			public void actionPerformed(ActionEvent evt) {
 				String textString = result.getText();
-				if(textString.startsWith("-")) {
-					textString.replace("-", "");
-				}else {
-					StringBuilder sb = new StringBuilder(textString);
-					sb.insert(0, "-");
-				}
+				Integer numResult = Integer.parseInt(textString);
+				numResult = numResult * (-1);
+				textString = numResult.toString();
+				result.setText(textString);
+				
+//				if(textString.startsWith("-")) {
+//					textString.replace("-", "");
+//					result.setText(textString);
+//				}else {
+//					StringBuilder sb = new StringBuilder(textString);
+//					sb.insert(0, "-");
+//					textString = sb.toString();
+//					result.setText(textString);
+//				}
 			}
 		}
 	}
